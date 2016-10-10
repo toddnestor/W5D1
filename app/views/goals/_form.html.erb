@@ -1,0 +1,25 @@
+<form action='<%= action %>' method='post'>
+  <%= auth_token %>
+  <input type='hidden' name='_method' value='<%= method %>'>
+  <label>
+    description
+    <br>
+    <textarea name='goal[description]' rows='5' cols='20'><%= goal.description %></textarea>
+  </label>
+
+  <label>
+    public
+    <input type="hidden" name="goal[publicly_viewable]" value="false" />
+    <input type="checkbox" name="goal[publicly_viewable]" value="true" <%= 'checked' if goal.publicly_viewable %> />
+  </label>
+
+  <input type="hidden" name="goal[completed]" value="false" />
+  <% if goal.persisted? %>
+  <label>
+    completed
+    <input type="checkbox" name="goal[completed]" value="true" <%= 'checked' if goal.completed %> />
+  </label>
+  <% end %>
+
+  <button><%= button_text %></button>
+</form>
